@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.adsmedia.mastermodul.MasterAdsHelper;
+import com.huawei.hms.ads.AdListener;
 import com.huawei.hms.ads.AdParam;
 import com.huawei.hms.ads.BannerAdSize;
 import com.huawei.hms.ads.HwAds;
@@ -63,7 +64,35 @@ public class AdsHelper {
         bannerView.setBannerAdSize(BannerAdSize.BANNER_SIZE_320_50);
         layout.addView(bannerView);
         bannerView.loadAd(new AdParam.Builder().build());
+        AdListener adListener = new AdListener();
+        bannerView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
 
+            }
+
+            @Override
+            public void onAdFailed(int errorCode) {
+                MasterAdsHelper.showBanner(activity, layout);
+            }
+
+            @Override
+            public void onAdOpened() {
+            }
+
+            @Override
+            public void onAdClicked() {
+
+            }
+
+            @Override
+            public void onAdLeave() {
+            }
+
+            @Override
+            public void onAdClosed() {
+            }
+        });
 
     }
 
